@@ -8,6 +8,9 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+# ensure brew is installed
+command -v brew >/dev/null 2>&1 || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 # Make sure we’re using the latest Homebrew.
 brew update
 
@@ -34,23 +37,11 @@ brew install bash-completion
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
-# Install RingoJS and Narwhal.
-# Note that the order in which these are installed is important;
-# see http://git.io/brew-narwhal-ringo.
-# brew install ringojs
-# brew install narwhal
-
 # Install more recent versions of some OS X tools.
 brew install vim --override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
-
-# Install font tools.
-# brew tap bramstein/webfonttools
-# brew install sfnt2woff
-# brew install sfnt2woff-zopfli
-# brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 brew install aircrack-ng
@@ -79,37 +70,20 @@ brew install xpdf
 brew install xz
 
 # Install languages
-brew install ghc cabal-install
-brew install node
-brew install php56
-brew install php56-mcrypt
-brew install rbenv
-brew install ruby-build
+# brew install haskell-stack
 brew install python
+brew install purescript
+
+# non-brew language setup
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+nvm install --lts node
+brew install yarn
+npm i -g diff-so-fancy # used for git configuration of `git d`
 
 # Install other useful binaries.
 brew install ack
-brew install composer
 #brew install exiv2
-brew install git
-# brew install imagemagick --with-webp
-brew install lastpass-cli
-# brew install lua
-# brew install lynx
-# brew install p7zip
-# brew install pigz
-# brew install pv
-# brew install rename
-# brew install rhino
-brew install speedtest_cli
-# brew install ssh-copy-id
 brew install tree
-# brew install webkit2png
-# brew install zopfli
-
-# heroku deployments
-brew install postgresql
-brew install heroku-toolbelt
 
 # Remove outdated versions from the cellar.
 brew cleanup

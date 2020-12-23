@@ -1,5 +1,9 @@
 # Add `~/.bin` to the `$PATH`
-export PATH="$HOME/.bin:$PATH";
+export PATH="$HOME/.npm-packages/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH";
+
+# nvm setup
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -11,6 +15,8 @@ unset file;
 
 # Add directory marking
 source ~/.marks/.functions
+
+source ~/.gitcompletion.bash
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
@@ -36,7 +42,7 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+if type _git &> /dev/null && [ -f ~/.gitcompletion.bash ]; then
 	complete -o default -o nospace -F _git g;
 fi;
 

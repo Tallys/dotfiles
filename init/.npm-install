@@ -1,5 +1,7 @@
 npm install -g gulp
 npm install -g bower
 npm install -g n
+npm install -g pulp
+npm install -g diff-so-fancy
 
 n latest
